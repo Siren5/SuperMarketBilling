@@ -1,1 +1,34 @@
+# Simple Supermarket Billing System
 
+print("=== Welcome to SuperMart ===")
+
+items = []
+total = 0
+
+while True:
+    name = input("Enter item name (or 'done' to finish): ")
+    if name.lower() == 'done':
+        break
+    price = float(input(f"Enter price of {name}: ₹"))
+    qty = int(input(f"Enter quantity of {name}: "))
+    
+    amount = price * qty
+    total += amount
+    items.append((name, price, qty, amount))
+
+# GST 5%
+gst = total * 0.05
+final_total = total + gst
+
+# Print Bill
+print("\n======= BILL =======")
+print(f"{'Item':10} {'Price':>8} {'Qty':>5} {'Amount':>10}")
+for name, price, qty, amount in items:
+    print(f"{name:10} {price:8.2f} {qty:5} {amount:10.2f}")
+
+print("------------------------------")
+print(f"{'Subtotal':>25} : ₹{total:.2f}")
+print(f"{'GST (5%)':>25} : ₹{gst:.2f}")
+print(f"{'Total Amount':>25} : ₹{final_total:.2f}")
+print("==============================")
+print("Thank you for shopping with us!")
